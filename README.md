@@ -27,7 +27,7 @@
 
 # 📖 [Laundry_100] <a name="about-project"></a>
 
-**[Laundry_100]** Build using React and Nextjs.
+**[Laundry_100]** is an app for a Laundry shop. It connects customers to service providers. Build using React and Nextjs.
 
 ## 🛠 Built With <a name="built-with"></a>
 
