@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import api from '../api/axios';
 
-const createUser =  createAsyncThunk(
+export const createUser =  createAsyncThunk(
   'user/register',
   async (registrationDetails, thunkAPI) => {
     try {
-      const response = await axios.post(
+      const response = await api.post(
         '/api/v1/users',
         {registrationDetails},
         {
@@ -28,7 +29,7 @@ export const logInUser =  createAsyncThunk(
   'login',
   async (loginDetails, thunkAPI) => {
     try {
-      const response = await axios.post(
+      const response = await api.post(
         '/api/v1/login',
         {loginDetails},
         {
@@ -55,7 +56,7 @@ const initialState = {
 };
 
 const userSlice = createSlice({
-  name: user,
+  name: 'user',
   initialState,
 
   extraReducers: (builder) => {
@@ -83,5 +84,4 @@ const userSlice = createSlice({
   }
 });
 
-export { logInUser };
 export default userSlice.reducer;
