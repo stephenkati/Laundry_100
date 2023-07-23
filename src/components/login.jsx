@@ -1,27 +1,55 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logInUser } from '../redux/userReducer';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const dispatch = useDispatch()
-  const { user, token } = useSelector((store) => store.user);
-  console.log(user)
-  console.log(token)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { isLoading } = useSelector((state) => state.user);
 
-  const loginDetails = {
-    email: 'test@gmail.com',
-    password: 'test'
+  const loginDetails = { email, password };
+
+  const handleLogin = async () => {
+    try {
+      await dispatch(logInUser(loginDetails));
+      navigate('/');
+      const form = document.getElementById('form');
+      form.reset();
+    } catch (error) {
+      console.error('Login error:', error);
+    }
   };
 
-  useEffect(() => {
-    dispatch(logInUser(loginDetails))
-  }, []);
   return (
-    <button
-      type="button"
-      onClick={() => dispatch(logInUser(loginDetails))}
-    >Login</button>
-  )
+    <div>
+      <h1>Login</h1>
+      <form id="form">
+        <input
+          type="email"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <button type="button" onClick={handleLogin} disabled={isLoading}>
+            Login
+          </button>
+        )}
+      </form>
+      <h2>
+        Don't have an account? <Link to="/register">Register</Link>
+      </h2>
+    </div>
+  );
 };
 
 export default Login;
