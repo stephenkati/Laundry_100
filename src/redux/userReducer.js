@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import api from '../api/axios';
+import { saveToken } from '../api/localStorage';
 
 export const createUser =  createAsyncThunk(
   'user/register',
   async (registrationDetails, thunkAPI) => {
     try {
       const response = await api.post(
-        '/api/v1/users',
+        '/users',
         {registrationDetails},
         {
           headers: {
@@ -16,7 +17,6 @@ export const createUser =  createAsyncThunk(
         },
       );
       
-      console.log(response.data)
       return response.data;
 
     } catch (err) {
@@ -30,7 +30,7 @@ export const logInUser =  createAsyncThunk(
   async (loginDetails, thunkAPI) => {
     try {
       const response = await api.post(
-        '/api/v1/login',
+        '/login',
         {loginDetails},
         {
           headers: {
@@ -40,7 +40,6 @@ export const logInUser =  createAsyncThunk(
         },
       );
       
-      console.log(response.data)
       return response.data;
 
     } catch (err) {
@@ -52,6 +51,7 @@ export const logInUser =  createAsyncThunk(
 const initialState = {
   isLoading: false,
   user: null,
+  token: null,
   authenticated: false,
 };
 
@@ -64,8 +64,10 @@ const userSlice = createSlice({
       .addCase(createUser.pending, (state) => {state.isLoading = true})
       .addCase(createUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
         state.authenticated = true;
+        saveToken(state.token);
       })
       .addCase(createUser.rejected, (state, action) => {
         state.isLoading = false;
@@ -74,8 +76,10 @@ const userSlice = createSlice({
       .addCase(logInUser.pending, (state) => {state.isLoading = true})
       .addCase(logInUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
         state.authenticated = true;
+        saveToken(state.token);
       })
       .addCase(logInUser.rejected, (state, action) => {
         state.isLoading = false;
