@@ -46,7 +46,7 @@
 
 ### Key Features <a name="key-features"></a>
 
-<!-- - **[]**
+<!-- - **[Login]**
 - **[]**
 - **[]**
 - **[]** -->
@@ -63,16 +63,17 @@ To get a local copy up and running, follow these steps.
 
 In order to run this project you need:
 
-```sh
- nodeje
+```
+ Nodejs
  npm
+ yarn(optional)
 ```
 
 ### Setup
 
 Clone this repository to your desired folder:
 
-```sh
+```
   git clone https://github.com/stephenkati/Laundry_100.git
   cd Laundry_100
 ```
@@ -81,16 +82,27 @@ Clone this repository to your desired folder:
 
 Install this project with:
 
-```sh
+```
   npm install
+```
+or
+
+```
+  yarn
 ```
 
 ### Usage
 
 To run the project, execute the following command:
 
-```sh
+```
  npm run dev
+```
+
+or
+
+```
+ yarn dev
 ```
 
 ### Run tests
