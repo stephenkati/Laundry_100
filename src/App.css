@@ -13,6 +13,17 @@
   transition: width 0.3s ease-in;
 }
 
-.slide-in:hover::after {
+.slide-in:hover::after,
+.slide-in:active::after {
   width: 100%;
+}
+
+.close:active {
+  transform: scale(1.2);
+  color: red;
+}
+
+.profile:active {
+  transform: scale(1.2);
+  color: rgb(17, 164, 231);
 }
