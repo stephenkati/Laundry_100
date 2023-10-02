@@ -7,23 +7,25 @@ import Register from './components/register';
 import Login from './components/login';
 import Logout from './components/logout';
 import ProtectedRoutes from './components/ProtectedRoutes';
+import Navbar from './components/navigation/Navbar';
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <div>
+        <div className="">
           <Routes>
-            <Route
+            {/* <Route
               path="/"
               element={
                 <ProtectedRoutes>
                   <Logout />
                 </ProtectedRoutes>
               }
-            />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
+            /> */}
+            <Route path="/" element={<Navbar />} />
+            {/* <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} /> */}
           </Routes>
         </div>
       </BrowserRouter>
