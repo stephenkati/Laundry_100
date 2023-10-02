@@ -1,5 +1,4 @@
 import React from 'react'
-import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const links = [
@@ -9,7 +8,6 @@ const links = [
 ];
 
 const DesktopNav = () => {
-  const location = useLocation();
 
   return (
     <ul className="hidden md:flex p-1 w-full justify-center gap-4">
