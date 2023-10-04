@@ -27,3 +27,18 @@
   transform: scale(1.2);
   color: rgb(17, 164, 231);
 }
+
+.hero-sect {
+  min-height: 80vh;
+  background-image: url(/laundry-bg\ .jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hero-content {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
