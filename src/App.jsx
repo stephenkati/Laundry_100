@@ -9,6 +9,8 @@ import Logout from './components/logout';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import Navbar from './components/navigation/Navbar';
 import HeroSection from './components/Hero/HeroSection';
+import Intro from './components/Intro';
+import Services from './components/Services/Services';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <div className="">
             <Navbar />
             <HeroSection />
+            <Intro />
+            <Services />
           <Routes>
             {/* <Route path="/" element={<Navbar />} /> */}
             {/* <Route
