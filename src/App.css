@@ -42,3 +42,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
