@@ -1,23 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ServiceList } from './ServiceList';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import ServicesCard from './ServicesCard';
+import SlidePrev from './SlidePrev';
+import SlideNext from './SlideNext';
 
 const Services = () => {
+  const [slidesInview, setSlidesInView] = useState(3);
+
+  const handleResize = () => {
+    if(window.innerWidth < 640){
+      setSlidesInView(1)
+    } else if(window.innerWidth >= 640 && window.innerWidth < 768){
+      setSlidesInView(2)
+    } else {
+      setSlidesInView(3)
+    }
+  };
+
+  useEffect(() => {
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    }
+  }, []);
+
   return (
     <div className='w-full flex flex-col items-center'>
       <h4 className='text-4xl text-secondary'>Our Services</h4>
       <p>All our services are available for you right now!</p>
 
-      <div className="flex flex-wrap gap-4 w-full justify-center p-7">
+      <Swiper
+        spaceBetween={10}
+        slidesPerView={slidesInview}
+        className="flex flex-wrap gap-7 w-full justify-center p-4 relative"
+      >
+        <SlidePrev />
+        <SlideNext />
+        
         {ServiceList.map((service, index) => (
-          <div key={index} className="p-4 w-64 text-center items-center h-fit my-5">
-            <div className='w-full h-2/3'>
-              <img src={service.image} alt={service.title} className='w-full h-40 rounded-lg' />
-            </div>
-            <h5 className="text-xl text-secondary font-semibold py-5">{service.title}</h5>
-            <p>{service.description}</p>
-          </div>
+          <SwiperSlide className='p-0 m-0 flex justify-center'>
+            <ServicesCard key={index} service={service} />
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
 
     </div>
   )
